@@ -41,9 +41,26 @@ const MainSlider = () => {
           
         </Container>
       </SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
+      <SwiperSlide className="slider-item">
+        <img src="/image/slide-2.jpg" className="img-fluid" alt="" />
+        <Container>
+        <div className="slider-content">
+        <div className="col-lg-4">
+            <h1>Lorem ipsum dolor sit amet.</h1>
+            <form action="#">
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Learn..."
+              />
+            </form>
+          </div>
+        </div>
+          
+        </Container>
+      </SwiperSlide>
+
+
     </Swiper>
   );
 };
