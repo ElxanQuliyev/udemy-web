@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CourseCard from "../course-card/CourseCard";
 import "./popular-courses.scss";
+import {BASE_URL} from "../../api/BaseConfig";
 const PopularCourses = () => {
+  const [courses, setcourses] = useState([])
+  const getCourses=()=>{
+    fetch(`${BASE_URL}api/course`).then(c=>c.json()).then(c=>setcourses(c));
+  }
+  useEffect(()=>{
+    getCourses()
+  },[])
   return (
     <section id="popular-courses" className="courses-section division">
       <div className="container">
@@ -30,11 +38,9 @@ const PopularCourses = () => {
           </div>
         </div>
         <div className="row">
-            <CourseCard/>
-            <CourseCard/>
-            <CourseCard/>
-            <CourseCard/>
-            <CourseCard/>
+            {courses.map(course=>(
+               <CourseCard courseInfo={course}/>
+            ))}
         </div>
       </div>
     </section>
