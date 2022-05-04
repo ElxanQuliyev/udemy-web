@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const CourseCard = () => {
   return (
     <div class="col-md-6 col-lg-4 col-xl-3">
-      <div class="cbox-1">
+      <div class="course-item">
         <Link to="/course-details">
           <img
             class="img-fluid"

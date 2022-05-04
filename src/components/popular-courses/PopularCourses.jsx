@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CourseCard from "../course-card/CourseCard";
-
+import "./popular-courses.scss";
 const PopularCourses = () => {
   return (
     <section id="popular-courses" className="courses-section division">
