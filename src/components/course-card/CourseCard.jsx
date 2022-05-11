@@ -16,7 +16,7 @@ const CourseCard = ({ courseInfo }) => {
               <span>Languages</span>
               <span>English</span>
             </p> */}
-            <h5 class="h5-xs">{courseInfo.name}</h5>
+            <h5 class="h5-xs">{courseInfo.courseName}</h5>
             <div class="course-rating clearfix">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>

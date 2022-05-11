@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { BASE_URL } from "../api/BaseConfig";
+import CategoryItem from "../components/category-item/CategoryItem";
 import MainSlider from "../components/mainSlider/MainSlider";
 import PopularCourses from "../components/popular-courses/PopularCourses";
 
 const Home = () => {
+  const [categories, setCategories] = useState([]);
+
+  const getCategories = () => {
+    fetch(BASE_URL + "api/Category/GetAll")
+      .then((c) => c.json())
+      .then((c) => setCategories(c));
+  };
+  useEffect(() => {
+    getCategories();
+  }, []);
   return (
     <>
       <MainSlider />
@@ -78,7 +90,40 @@ const Home = () => {
         </div>
       </section>
       {/* About 2 End  */}
-      <PopularCourses/>
+      <PopularCourses />
+      <section className="trend-categories my-5">
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <div class="col-md-12">
+                <div class="section-title mb-5 d-flex justify-content-between align-items-center">
+                  <div class="col-lg-7">
+                    <div class="section-title-left">
+                      <h3 class="h3-sm">Most Category Trend</h3>
+                      <p class="p-md">
+                        Aliquam a augue suscipit, luctus neque purus ipsum neque
+                        dolor primis libero tempus, blandit posuere and ligula
+                        varius magna a porta
+                      </p>
+                    </div>
+                  </div>
+                  <div class="title-btn">
+                    <a
+                      class="btn btn-outline-dark rose-hover"
+                      href="/courses-list"
+                    >
+                      View All Categorie
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {categories?.map((c) => (
+              <CategoryItem category={c} />
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 };
