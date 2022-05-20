@@ -1,23 +1,35 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { BASE_URL } from "../api/BaseConfig";
 import CategoryItem from "../components/category-item/CategoryItem";
 import MainSlider from "../components/mainSlider/MainSlider";
 import PopularCourses from "../components/popular-courses/PopularCourses";
+import { changeColor } from "../Redux/Action/ColorAction";
 
 const Home = () => {
+  const dispatch=useDispatch()
   const [categories, setCategories] = useState([]);
-
-  const getCategories = () => {
-    fetch(BASE_URL + "api/Category/GetAll")
-      .then((c) => c.json())
-      .then((c) => setCategories(c));
-  };
-  useEffect(() => {
-    getCategories();
-  }, []);
+  const [currentColor, setCurrentColor] = useState("");
+  // const getCategories = () => {
+  //   fetch(BASE_URL + "api/Category/GetAll")
+  //     .then((c) => c.json())
+  //     .then((c) => setCategories(c));
+  // };
+  // useEffect(() => {
+  //   getCategories();
+  // }, []);
+  const colorChangeHandler=()=>{
+    dispatch(changeColor(currentColor))
+  }
   return (
     <>
       <MainSlider />
+      <input
+        onChange={(c) => setCurrentColor(c.target.value)}
+        type="text"
+        placeholder="color..."
+      />
+      <button onClick={colorChangeHandler}  className="btn btn-warning">Change Color</button>
       <section className="about-section">
         <div className="container">
           <div className="row">
@@ -61,8 +73,8 @@ const Home = () => {
               </div>
             </div>
             <div className="col-lg-6">
-              <div class="about2-right">
-                <h3 class="h3-sm">
+              <div className="about2-right">
+                <h3 className="h3-sm">
                   Transform your life through online education
                 </h3>
                 <p>
@@ -70,7 +82,7 @@ const Home = () => {
                   ipsum enim justo integer velna vitae auctor integer congue
                   magna and purus pretium risus ligula rutrum luctus ultrice
                 </p>
-                <ul class="txt-list mb-15">
+                <ul className="txt-list mb-15">
                   <li>
                     Nullam rutrum eget nunc varius etiam mollis risus undo
                   </li>
@@ -90,26 +102,26 @@ const Home = () => {
         </div>
       </section>
       {/* About 2 End  */}
-      <PopularCourses />
+      {/* <PopularCourses /> */}
       <section className="trend-categories my-5">
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <div class="col-md-12">
-                <div class="section-title mb-5 d-flex justify-content-between align-items-center">
-                  <div class="col-lg-7">
-                    <div class="section-title-left">
-                      <h3 class="h3-sm">Most Category Trend</h3>
-                      <p class="p-md">
+              <div className="col-md-12">
+                <div className="section-title mb-5 d-flex justify-content-between align-items-center">
+                  <div className="col-lg-7">
+                    <div className="section-title-left">
+                      <h3 className="h3-sm">Most Category Trend</h3>
+                      <p className="p-md">
                         Aliquam a augue suscipit, luctus neque purus ipsum neque
                         dolor primis libero tempus, blandit posuere and ligula
                         varius magna a porta
                       </p>
                     </div>
                   </div>
-                  <div class="title-btn">
+                  <div className="title-btn">
                     <a
-                      class="btn btn-outline-dark rose-hover"
+                      className="btn btn-outline-dark rose-hover"
                       href="/courses-list"
                     >
                       View All Categorie

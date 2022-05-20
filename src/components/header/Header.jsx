@@ -2,7 +2,10 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import "./header.scss";
+import {  useSelector } from "react-redux";
 const Header = () => {
+    const myReng=useSelector(state=>state.colorReducer)
+    console.log(myReng)
   return (
     <header id="header">
         <div className="container">
@@ -13,6 +16,7 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="col-auto">
+                    {myReng.reng}
                 <nav className="menu">
                     <ul className="d-flex list-unstyled m-0">
                         <li>
