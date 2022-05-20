@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { BASE_URL } from "../api/BaseConfig";
 import CategoryItem from "../components/category-item/CategoryItem";
@@ -7,6 +7,21 @@ import PopularCourses from "../components/popular-courses/PopularCourses";
 import { changeColor } from "../Redux/Action/ColorAction";
 
 const Home = () => {
+  const handleScrollButton=()=>{
+    window.scrollTo(0,0)
+  }
+  const btnRef=useRef(null)
+  useEffect(()=>{
+    window.addEventListener("scroll",()=>{
+      if(window.scrollY>1500){
+        console.log("aaa")
+        btnRef.current.classList.add("active")
+      }else{
+        btnRef.current.classList.remove("remove")
+      }
+    })
+  },[])
+
   const dispatch=useDispatch()
   const [categories, setCategories] = useState([]);
   const [currentColor, setCurrentColor] = useState("");
@@ -136,6 +151,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <button ref={btnRef} onClick={handleScrollButton} className="btn btn-dark my-bt">Yuxarı</button>
     </>
   );
 };

@@ -21,9 +21,11 @@ import {createStore,combineReducers, applyMiddleware} from "redux";
 import { ChangeColorReducer } from "./Reducers/ColorReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import { darkModeReducer } from "./Reducers/DarkModeReducer";
 
 const reducer=combineReducers({
     colorReducer:ChangeColorReducer,
+    darkMode:darkModeReducer
 })
 const initialState={}
 const middleware = [thunk];

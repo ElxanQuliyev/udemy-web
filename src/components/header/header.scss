@@ -1,5 +1,11 @@
 #header{
     box-shadow: 0 0 20px 0 #eee;
+    &.active{
+        background: #000;
+        a{
+            color: #fff !important;
+        }
+    }
     nav.menu{
         ul{
             li{

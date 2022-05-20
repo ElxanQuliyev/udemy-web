@@ -2,12 +2,17 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import "./header.scss";
-import {  useSelector } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
+import { changeMode } from "../../Redux/Action/DarkMode";
 const Header = () => {
+    const dispatch=useDispatch();
     const myReng=useSelector(state=>state.colorReducer)
-    console.log(myReng)
+    const mode=useSelector(state=>state.darkMode)
+    const m=useSelector(state=>state)
+
+    console.log(m)
   return (
-    <header id="header">
+    <header id="header" className={ mode.colorMode!=="#fff"? "active" : ""}>
         <div className="container">
             <div className="row align-items-center justify-content-between">
                 <div className="col-lg-2">
@@ -16,8 +21,8 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="col-auto">
-                    {myReng.reng}
-                <nav className="menu">
+                    
+                <nav style={{background:`${myReng.reng}`}} className="menu">
                     <ul className="d-flex list-unstyled m-0">
                         <li>
                             <Link to="/">HOME</Link>
@@ -33,6 +38,12 @@ const Header = () => {
                         </li>
                         <li>
                             <Link to="#">item 5</Link>
+                        </li>
+                        <li>
+                            <button onClick={()=>dispatch(changeMode("#000"))} className="btn btn-dark">Black</button>
+                        </li>
+                        <li>
+                        <button onClick={()=>dispatch(changeMode("#fff"))} className="btn btn-secondary">White</button>
                         </li>
                     </ul>
                 </nav>

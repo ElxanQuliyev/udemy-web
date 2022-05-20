@@ -21,6 +21,15 @@
     src: url("../public/fonts/Flaticon.svg#Flaticon") format("svg");
   }
 }
+.my-bt{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  &.active{
+    display: block;
+  }
+}
 
 [class^="flaticon-"]:before,
 [class*=" flaticon-"]:before,
