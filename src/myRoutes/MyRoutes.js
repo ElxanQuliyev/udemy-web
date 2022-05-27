@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import CourseDetail from '../pages/CourseDetail'
 import Courses from '../pages/Courses'
 import Home from '../pages/Home'
+import LoginPage from '../pages/LoginPage'
 import Register from '../pages/Register'
 
 const MyRoutes = () => {
@@ -12,8 +13,7 @@ const MyRoutes = () => {
         <Route path="/course-details/:id" element={<CourseDetail/>}/>
         <Route path="/courses/:id" element={<Courses/>}/>
         <Route path="/register" element={<Register/>}/>
-
-
+        <Route path="/login" element={<LoginPage/>}/>
     </Routes>
   )
 }
