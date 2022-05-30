@@ -1,16 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginAction } from '../Redux/Action/UserActions'
-
+import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 const LoginPage = () => {
-    const [email,setEmail]=useState("")
-    const [password,setPassword]=useState("")
-    const dispatch=useDispatch()
-
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+    const dispatch=useDispatch();
+    const navi=useNavigate();
+    const {userInfo}=useSelector(st=>st.loginUser);
     const submitForm=(e)=>{
         e.preventDefault();
         dispatch(loginAction(email,password))
     }
+    useEffect(()=>{
+      if(userInfo && userInfo.token){
+        navi("/")
+      }
+    },[navi,userInfo])
 
   return (
     <div className="container my-5">

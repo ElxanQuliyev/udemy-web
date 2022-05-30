@@ -25,14 +25,14 @@ const Home = () => {
   const dispatch=useDispatch()
   const [categories, setCategories] = useState([]);
   const [currentColor, setCurrentColor] = useState("");
-  // const getCategories = () => {
-  //   fetch(BASE_URL + "api/Category/GetAll")
-  //     .then((c) => c.json())
-  //     .then((c) => setCategories(c));
-  // };
-  // useEffect(() => {
-  //   getCategories();
-  // }, []);
+  const getCategories = () => {
+    fetch(BASE_URL + "api/Category/GetAll")
+      .then((c) => c.json())
+      .then((c) => setCategories(c));
+  };
+  useEffect(() => {
+    getCategories();
+  }, []);
   const colorChangeHandler=()=>{
     dispatch(changeColor(currentColor))
   }
@@ -117,7 +117,7 @@ const Home = () => {
         </div>
       </section>
       {/* About 2 End  */}
-      {/* <PopularCourses /> */}
+      <PopularCourses />
       <section className="trend-categories my-5">
         <div className="container">
           <div className="row">

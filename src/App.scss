@@ -206,3 +206,25 @@
   font-size: 3.5rem;
   margin-bottom: 2rem;
 }
+
+.course-detail{
+  .category-name{
+    color: #888;
+    font-weight: 600;
+  }
+  .title{
+    font-size: 3rem;
+    margin: 1rem 0;
+  }
+  
+}
+
+.course-detail-right{
+  text-align: center;
+  .price{
+    color: darkblue;
+    font-size: 1.5em;
+    margin: .5rem 0;
+    font-weight: 600;
+  }
+}
