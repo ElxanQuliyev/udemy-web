@@ -11,11 +11,11 @@ export default function CourseLessons({ lessons }) {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-
   return (
     <div>
       {lessons?.map((ls) => (
         <Accordion
+          key={ls.lessonId}
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
         >

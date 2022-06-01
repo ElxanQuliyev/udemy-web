@@ -18,7 +18,7 @@ const Courses = () => {
     <div>
         <h4>Courses</h4>
         {courseList?.map((course)=>(
-            <CourseCard key={course.courId} courseInfo={course}/>
+            <CourseCard key={course.courseId} courseInfo={course}/>
         ))}
     </div>
   )

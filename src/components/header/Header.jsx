@@ -5,6 +5,8 @@ import "./header.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { changeMode } from "../../Redux/Action/DarkMode";
 import { logoutAction } from "../../Redux/Action/UserActions";
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+
 const Header = () => {
   const dispatch = useDispatch();
   const myReng = useSelector((state) => state.colorReducer);
@@ -49,7 +51,11 @@ const Header = () => {
                     </li>
                   </>
                 )}
-
+                <li>
+                    <Link to="/cart">
+                        <ShoppingBagOutlinedIcon/>
+                    </Link>
+                </li>
                 <li>
                   <button
                     onClick={() => dispatch(changeMode("#000"))}

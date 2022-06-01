@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BASE_URL } from "../api/BaseConfig";
+import {useDispatch,useSelector} from "react-redux";
 import CourseLessons from "../components/course-lessons/CourseLessons";
+import { AddToCart } from "../Redux/Action/CartAction";
 
 const CourseDetail = () => {
   const { id } = useParams();
   const [course, setcourse] = useState(null);
+  const dispatch = useDispatch();
+  const {cartItems}=useSelector(state=>state.cart)
+
   const getCourseById = (myId) => {
     fetch(`${BASE_URL}api/course/${myId}`)
       .then((c) => c.json())
       .then((c) => setcourse(c));
   };
-  console.log(course);
   useEffect(() => {
     getCourseById(id);
+
   }, [id]);
+  const handleAddToCart=(id)=>{
+    const findItem=cartItems.length>0?cartItems.find(ct=>ct.id===id):null;
+    const quantity=findItem ? findItem.quantity + 1 : 1;
+    dispatch(AddToCart(id,quantity))
+  }
   return (
     <section className="course-detail mt-5" style={{ marginTop: "10rem" }}>
       {course ? (
@@ -48,7 +58,7 @@ const CourseDetail = () => {
                   )}
                 </p>
                 <button className="btn btn-danger w-100">Watch Video</button>
-                <button className="btn btn-outline-dark my-3 w-100">
+                <button onClick={()=>handleAddToCart(course.courseId) } className="btn btn-outline-dark my-3 w-100">
                   Add To Cart
                 </button>
               </div>

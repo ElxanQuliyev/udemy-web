@@ -5,7 +5,7 @@ import Courses from '../pages/Courses'
 import Home from '../pages/Home'
 import LoginPage from '../pages/LoginPage'
 import Register from '../pages/Register'
-
+import Cart from "../pages/Cart";
 const MyRoutes = () => {
   return (
     <Routes>
@@ -14,6 +14,7 @@ const MyRoutes = () => {
         <Route path="/courses/:id" element={<Courses/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/cart" element={<Cart/>}/>
     </Routes>
   )
 }

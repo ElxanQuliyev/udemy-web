@@ -146,7 +146,7 @@ const Home = () => {
               </div>
             </div>
             {categories?.map((c) => (
-              <CategoryItem category={c} />
+              <CategoryItem key={c.categoryId} category={c} />
             ))}
           </div>
         </div>

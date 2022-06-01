@@ -44,7 +44,7 @@ const PopularCourses = () => {
         </div>
         <div className="row">
             {courses.map(course=>(
-               <CourseCard courseInfo={course}/>
+               <CourseCard key={course.courseId} courseInfo={course}/>
             ))}
         </div>
       </div>
