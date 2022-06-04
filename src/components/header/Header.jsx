@@ -10,6 +10,7 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 const Header = () => {
   const dispatch = useDispatch();
   const myReng = useSelector((state) => state.colorReducer);
+  const {cartItems} = useSelector((state) => state.cart);
   const mode = useSelector((state) => state.darkMode);
   const myUser = useSelector((state) => state.loginUser);
   return (
@@ -52,8 +53,10 @@ const Header = () => {
                   </>
                 )}
                 <li>
-                    <Link to="/cart">
+                    <Link className="text-decoration-none" to="/cart">
                         <ShoppingBagOutlinedIcon/>
+                        {/* <sub>{cartItems.length}</sub> */}
+                        <sub>{cartItems.reduce((total,item)=>total+item.quantity,0)}</sub>
                     </Link>
                 </li>
                 <li>

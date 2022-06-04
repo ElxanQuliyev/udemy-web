@@ -18,7 +18,6 @@ const CourseDetail = () => {
   };
   useEffect(() => {
     getCourseById(id);
-
   }, [id]);
   const handleAddToCart=(id)=>{
     const findItem=cartItems.length>0?cartItems.find(ct=>ct.id===id):null;
