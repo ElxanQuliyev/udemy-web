@@ -3,30 +3,30 @@ import { Link } from "react-router-dom";
 
 const CourseCard = ({ courseInfo }) => {
   return (
-    <div class="col-md-6 col-lg-4 col-xl-3">
-      <div class="course-item">
+    <div className="col-md-6 col-lg-4 col-xl-3">
+      <div className="course-item">
         <Link to={`/course-details/${courseInfo.courseId}`}>
           <img
-            class="img-fluid"
+            className="img-fluid"
             src={courseInfo.photoUrl}
             alt="course-preview"
           />
-          <div class="cbox-4-txt">
-            {/* <p class="course-tags">
+          <div className="cbox-4-txt">
+            {/* <p className="course-tags">
               <span>Languages</span>
               <span>English</span>
             </p> */}
-            <h5 class="h5-xs">{courseInfo.courseName}</h5>
-            <div class="course-rating clearfix">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
+            <h5 className="h5-xs">{courseInfo.courseName}</h5>
+            <div className="course-rating clearfix">
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star-half-alt"></i>
               <span>{courseInfo.reyting}</span>
             </div>
-            <span class="course-price">
-              <span class="old-price">
+            <span className="course-price">
+              <span className="old-price">
                 {courseInfo.discount > 0 ? (
                   <>
                     <del>{courseInfo.price} $</del> {" "}

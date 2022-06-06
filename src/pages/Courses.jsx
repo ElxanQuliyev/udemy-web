@@ -4,7 +4,7 @@ import { BASE_URL } from '../api/BaseConfig';
 import CourseCard from '../components/course-card/CourseCard';
 
 const Courses = () => {
-    const {id}=useParams();
+    const {categoryId}=useParams();
     const [courseList,setCourseList]=useState([]);
     const getCourseByCategory=(myId)=>{
         fetch(`${BASE_URL}api/course/category/${myId}`)
@@ -12,8 +12,8 @@ const Courses = () => {
         .then(c=>setCourseList(c))
     }
     useEffect(()=>{
-        getCourseByCategory(id)
-    },[id])
+        getCourseByCategory(categoryId)
+    },[categoryId])
   return (
     <div>
         <h4>Courses</h4>

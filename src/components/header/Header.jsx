@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeMode } from "../../Redux/Action/DarkMode";
 import { logoutAction } from "../../Redux/Action/UserActions";
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-
+import SearchForm from "../search-form/SearchForm";
 const Header = () => {
   const dispatch = useDispatch();
   const myReng = useSelector((state) => state.colorReducer);
@@ -60,6 +60,9 @@ const Header = () => {
                     </Link>
                 </li>
                 <li>
+                  <SearchForm/>
+                </li>
+                {/* <li>
                   <button
                     onClick={() => dispatch(changeMode("#000"))}
                     className="btn btn-dark"
@@ -74,7 +77,7 @@ const Header = () => {
                   >
                     White
                   </button>
-                </li>
+                </li> */}
               </ul>
             </nav>
           </div>

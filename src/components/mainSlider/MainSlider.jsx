@@ -19,8 +19,6 @@ const MainSlider = () => {
       navigation
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
       className="my-slider"
     >
       <SwiperSlide className="slider-item">

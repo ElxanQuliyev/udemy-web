@@ -20,7 +20,7 @@ const CourseDetail = () => {
     getCourseById(id);
   }, [id]);
   const handleAddToCart=(id)=>{
-    const findItem=cartItems.length>0?cartItems.find(ct=>ct.id===id):null;
+    const findItem=cartItems.length > 0 ?cartItems.find(ct=>ct.id===id) : null;
     const quantity=findItem ? findItem.quantity + 1 : 1;
     dispatch(AddToCart(id,quantity))
   }
