@@ -4,15 +4,27 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
+import CloseIcon from "@mui/icons-material/Close";
+import "./course-lessons.scss";
 export default function CourseLessons({ lessons }) {
   const [expanded, setExpanded] = React.useState(false);
-
+  const [modal, setModal] = React.useState(false);
+  const [currentUrl, setCurrentUrl] = React.useState("");
+  console.log(currentUrl)
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
   return (
     <div>
+      {modal && (
+        <div className="my-modal">
+          {/* <div className="close-modal" onClick={()=>setModal(false)}>
+            <CloseIcon fontSize="large" />
+          </div>
+          <iframe src=""  allowFullScreen title="video"></iframe> */}
+        </div>
+      )}
+
       {lessons?.map((ls) => (
         <Accordion
           key={ls.lessonId}
@@ -24,28 +36,28 @@ export default function CourseLessons({ lessons }) {
             aria-controls="panel1bh-content"
             id="panel1bh-header"
           >
-            <Typography sx={{ width: "33%", flexShrink: 0 }}>
+            <h6>
               {ls.name}
-            </Typography>
-            <Typography sx={{ color: "text.secondary" }}>I</Typography>
+            </h6>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
               {ls.lessonVideos?.map((video) => (
-              <>
-               {/* <iframe width={300} height={300} src={`https://www.youtube.com/embed/${video.videoURl}`} frameborder="0" allowFullScreen title="video"></iframe> */}
-              <div className="d-flex align-items-center">
-                  <img
-                    width={"40%"}
-                    height={180}
-                    style={{objectFit:"cover",}}
-                    src={`https://img.youtube.com/vi/${video.videoURl}/hqdefault.jpg`}
-                   alt="sekil"/>
-                  <h4 className="m-5">{video.name}</h4>
+                <div key={ls.lessonId}>
+                  <div onClick={()=>{
+                     setModal(c=>!c)
+                     setCurrentUrl(video.videoURl)
+                     }} className="d-flex align-items-center">
+                    <img
+                      width={"40%"}
+                      height={180}
+                      style={{ objectFit: "cover" }}
+                      src={`https://img.youtube.com/vi/${video.videoURl}/hqdefault.jpg`}
+                      alt="sekil"
+                    />
+                    <h4 className="m-5">{video.name}</h4>
+                  </div>
                 </div>
-                </>
               ))}
-            </Typography>
           </AccordionDetails>
         </Accordion>
       ))}
