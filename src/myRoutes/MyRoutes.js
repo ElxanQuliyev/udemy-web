@@ -7,6 +7,7 @@ import LoginPage from '../pages/LoginPage'
 import Register from '../pages/Register'
 import Cart from "../pages/Cart";
 import FilterCourse from '../pages/FilterCourse'
+import ExplorePage from '../pages/ExplorePage'
 const MyRoutes = () => {
   return (
     <Routes>
@@ -17,6 +18,7 @@ const MyRoutes = () => {
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/cart" element={<Cart/>}/>
+        <Route path="/explore" element={<ExplorePage/>}/>
     </Routes>
   )
 }

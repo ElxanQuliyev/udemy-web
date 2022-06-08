@@ -10,7 +10,6 @@ export default function CourseLessons({ lessons }) {
   const [expanded, setExpanded] = React.useState(false);
   const [modal, setModal] = React.useState(false);
   const [currentUrl, setCurrentUrl] = React.useState("");
-  console.log(currentUrl)
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -18,10 +17,10 @@ export default function CourseLessons({ lessons }) {
     <div>
       {modal && (
         <div className="my-modal">
-          {/* <div className="close-modal" onClick={()=>setModal(false)}>
+          <div className="close-modal" onClick={()=>setModal(false)}>
             <CloseIcon fontSize="large" />
           </div>
-          <iframe src=""  allowFullScreen title="video"></iframe> */}
+          <iframe src={`https://www.youtube.com/embed/${currentUrl}`}  allowFullScreen title="video"></iframe>
         </div>
       )}
 
