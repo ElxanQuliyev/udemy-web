@@ -1,0 +1,23 @@
+.search-form{
+    position: relative;
+    .dropped-result{
+        background: #fff;
+        z-index: 5;
+        position: absolute;
+        top: 100%;
+        width: 250px;
+        left: 0;
+        box-shadow: 0 0 20px 0 #222;
+        max-height: 200px;
+        overflow-y: scroll;
+        display: none;
+        &.active{
+            display: block;
+        }
+        ul{
+            li{
+                padding:12px;
+            }
+        }
+    }
+}

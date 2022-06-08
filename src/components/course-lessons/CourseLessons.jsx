@@ -16,8 +16,8 @@ export default function CourseLessons({ lessons }) {
       {lessons?.map((ls) => (
         <Accordion
           key={ls.lessonId}
-          expanded={expanded === "panel1"}
-          onChange={handleChange("panel1")}
+          expanded={expanded === `panel${ls.lessonId}`}
+          onChange={handleChange(`panel${ls.lessonId}`)}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -27,14 +27,24 @@ export default function CourseLessons({ lessons }) {
             <Typography sx={{ width: "33%", flexShrink: 0 }}>
               {ls.name}
             </Typography>
-            <Typography sx={{ color: "text.secondary" }}>
-              I 
-            </Typography>
+            <Typography sx={{ color: "text.secondary" }}>I</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Nulla facilisi. Phasellus sollicitudin nulla et quam mattis
-              feugiat. Aliquam eget maximus est, id dignissim quam.
+              {ls.lessonVideos?.map((video) => (
+              <>
+               {/* <iframe width={300} height={300} src={`https://www.youtube.com/embed/${video.videoURl}`} frameborder="0" allowFullScreen title="video"></iframe> */}
+              <div className="d-flex align-items-center">
+                  <img
+                    width={"40%"}
+                    height={180}
+                    style={{objectFit:"cover",}}
+                    src={`https://img.youtube.com/vi/${video.videoURl}/hqdefault.jpg`}
+                   alt="sekil"/>
+                  <h4 className="m-5">{video.name}</h4>
+                </div>
+                </>
+              ))}
             </Typography>
           </AccordionDetails>
         </Accordion>

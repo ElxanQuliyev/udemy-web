@@ -16,6 +16,7 @@ const CourseDetail = () => {
       .then((c) => c.json())
       .then((c) => setcourse(c));
   };
+  console.log(course)
   useEffect(() => {
     getCourseById(id);
   }, [id]);
