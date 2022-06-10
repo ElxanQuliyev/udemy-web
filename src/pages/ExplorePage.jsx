@@ -5,10 +5,11 @@ import {
   FormGroup,
   Slider,
 } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect,useCallback } from "react";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import axios from "axios";
 import { BASE_URL } from "../api/BaseConfig";
+import CourseCard from "../components/course-card/CourseCard";
 function valuetext(value) {
   return `${value} AZN`;
 }
@@ -16,15 +17,25 @@ function valuetext(value) {
 const ExplorePage = () => {
   const [price, setPrice] = React.useState([0, 3000]);
   const [sortBy, setSortBy] = React.useState(2);
+  const [rating, setRating] = React.useState(5);
 
+  const [selectedInstructors, setSelectedInstructors] = React.useState([]);
+  const [courses,setCourses]=React.useState([]);
   const [instructors, setInstructors] = React.useState([]);
-  console.log(instructors);
-
   const getInstructors = async () => {
     const { data } = await axios.get(`${BASE_URL}api/instructor`);
     setInstructors(data);
   };
 
+  const getCourse=useCallback(async()=>{
+   const {data}= await axios.get(`${BASE_URL}api/course/filter/${encodeURIComponent(" ")}/${rating}/${price[0]}/${price[1]}/1/${sortBy}`) 
+   setCourses(data)
+  },[price,sortBy])
+
+  useEffect(()=>{
+    getCourse();
+  },[getCourse])
+  console.log(courses)
   useEffect(() => {
     getInstructors();
   }, []);
@@ -32,6 +43,14 @@ const ExplorePage = () => {
   const handleChange = (event, newValue) => {
     setPrice(newValue);
   };
+  const checkedInstructor=(e)=>{
+    const instId=Number(e.target.value);
+    if(e.target.checked){
+      setSelectedInstructors(i=>[...i,instId])
+    }else{
+        setSelectedInstructors(ins=>ins.filter(i=>i!==instId))
+    }
+  }
   return (
     <Container>
       <div className="row my-5">
@@ -60,19 +79,19 @@ const ExplorePage = () => {
             <div className="filter-item my-5">
               <h6>Rating:</h6>
               <ul className="list-unstyled d-flex">
-                <li>
+                <li onClick={()=>setRating(1)}>
+                  <StarOutlineIcon  />
+                </li>
+                <li onClick={()=>setRating(2)}>
                   <StarOutlineIcon />
                 </li>
-                <li>
+                <li onClick={()=>setRating(3)}>
                   <StarOutlineIcon />
                 </li>
-                <li>
+                <li onClick={()=>setRating(4)}>
                   <StarOutlineIcon />
                 </li>
-                <li>
-                  <StarOutlineIcon />
-                </li>
-                <li>
+                <li onClick={()=>setRating(5)}>
                   <StarOutlineIcon />
                 </li>
               </ul>
@@ -85,9 +104,9 @@ const ExplorePage = () => {
                     ))}
                 </select> */}
               {instructors?.map((ins) => (
-                <FormGroup>
+                <FormGroup key={ins.id}>
                   <FormControlLabel
-                    control={<Checkbox defaultChecked />}
+                    control={<Checkbox value={ins.id} onChange={e=>checkedInstructor(e)}/>}
                     label={`${ins.fullName}`}
                   />
                 </FormGroup>
@@ -95,7 +114,13 @@ const ExplorePage = () => {
             </div>
           </div>
         </div>
-        <div className="col-lg-9">9</div>
+        <div className="col-lg-9">
+          <div className="row">
+          {courses?.map(c=>(
+              <CourseCard key={c.courseId} courseInfo={c}/>
+          ))}
+          </div>
+        </div>
       </div>
     </Container>
   );
