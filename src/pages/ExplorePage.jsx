@@ -17,8 +17,7 @@ function valuetext(value) {
 const ExplorePage = () => {
   const [price, setPrice] = React.useState([0, 3000]);
   const [sortBy, setSortBy] = React.useState(2);
-  const [rating, setRating] = React.useState(5);
-
+  const [rating, setRating] = React.useState(0);
   const [selectedInstructors, setSelectedInstructors] = React.useState([]);
   const [courses,setCourses]=React.useState([]);
   const [instructors, setInstructors] = React.useState([]);
@@ -27,10 +26,17 @@ const ExplorePage = () => {
     setInstructors(data);
   };
 
-  const getCourse=useCallback(async()=>{
-   const {data}= await axios.get(`${BASE_URL}api/course/filter/${encodeURIComponent(" ")}/${rating}/${price[0]}/${price[1]}/1/${sortBy}`) 
+  const getCourse = useCallback(async()=>{
+   const {data}= await axios.post(`${BASE_URL}api/course/filter`,
+   {
+    minPrice:price[0],
+    maxPrice:price[1],
+    sortBy,
+    rating,
+    instructorIds:selectedInstructors     
+   }) 
    setCourses(data)
-  },[price,sortBy])
+  },[price,sortBy,rating,selectedInstructors])
 
   useEffect(()=>{
     getCourse();
@@ -79,21 +85,11 @@ const ExplorePage = () => {
             <div className="filter-item my-5">
               <h6>Rating:</h6>
               <ul className="list-unstyled d-flex">
-                <li onClick={()=>setRating(1)}>
-                  <StarOutlineIcon  />
-                </li>
-                <li onClick={()=>setRating(2)}>
-                  <StarOutlineIcon />
-                </li>
-                <li onClick={()=>setRating(3)}>
-                  <StarOutlineIcon />
-                </li>
-                <li onClick={()=>setRating(4)}>
-                  <StarOutlineIcon />
-                </li>
-                <li onClick={()=>setRating(5)}>
-                  <StarOutlineIcon />
-                </li>
+                {[1,2,3,4,5].map((c)=>(
+                    <li onClick={()=>setRating(c)}>
+                    <StarOutlineIcon  />
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="filter-item my-5">

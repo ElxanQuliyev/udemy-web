@@ -9,8 +9,12 @@ const SearchForm = () => {
   const [courses, setCourses] = useState([]);
   const getMyCourse = useCallback(async () => {
     if (searchTerm !== "") {
-      let { data } = await axios.get(
-        `${BASE_URL}api/course/filter/${encodeURIComponent(searchTerm)}`
+      const { data } = await axios.post(
+        `${BASE_URL}api/course/filter`, {q:searchTerm}, {
+          headers: {
+            "Content-Type": "application/json-patch+json",
+          },
+        }
       );
       setCourses(data);
     } else {
@@ -49,7 +53,7 @@ const SearchForm = () => {
       </span>
         <div ref={resultRef} className="dropped-result">
           <ul className="list-unstyled">
-            {courses?.map((c) => (
+            {courses.courseListDtos?.map((c) => (
               <li key={c.courseId}>
                 <Link to={`/course-details/${c.courseId}`}>{c.courseName}</Link>
               </li>
